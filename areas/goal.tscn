@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://s14o2ifnibid"]
+
+[ext_resource type="Script" uid="uid://cg3ou2gmy6ph8" path="res://areas/goal.gd" id="1_ahmr8"]
+[ext_resource type="Texture2D" uid="uid://crth0odkvty4u" path="res://sprites/items/Eggman.png" id="2_4epmr"]
+[ext_resource type="Texture2D" uid="uid://ckv0iwrjo83x3" path="res://sprites/player/tails doll/sprite-22-1.png" id="3_kth8t"]
+[ext_resource type="Texture2D" uid="uid://b3wansi3i33tn" path="res://sprites/player/tails doll/sprite-22-2.png" id="4_076kb"]
+[ext_resource type="Texture2D" uid="uid://dyyuk3j4k4w3c" path="res://sprites/player/tails doll/sprite-22-3.png" id="5_nh5xw"]
+[ext_resource type="Texture2D" uid="uid://t0rvsrca38li" path="res://sprites/player/tails doll/sprite-22-4.png" id="6_twc37"]
+[ext_resource type="Texture2D" uid="uid://dk8i4ghu3iayj" path="res://sprites/player/tails doll/sprite-22-5.png" id="7_jt765"]
+[ext_resource type="Texture2D" uid="uid://dqfb1rmxwh3u5" path="res://sprites/player/tails doll/sprite-22-6.png" id="8_bpvnb"]
+[ext_resource type="Texture2D" uid="uid://caykbw8ma2d2g" path="res://sprites/player/tails doll/sprite-20-1.png" id="9_gkj1s"]
+[ext_resource type="AudioStream" uid="uid://civ1am7ykglaj" path="res://music/sign_post.wav" id="10_4epmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b560c"]
+size = Vector2(41, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b560c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4epmr")
+}],
+"loop": 1,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kth8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_076kb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nh5xw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_twc37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jt765")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bpvnb")
+}],
+"loop": 0,
+"name": &"spin",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_gkj1s")
+}],
+"loop": 1,
+"name": &"win",
+"speed": 5.0
+}]
+
+[node name="Goal" type="Area2D" unique_id=492290792 groups=["goal"]]
+script = ExtResource("1_ahmr8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1454635279]
+position = Vector2(-1.5, 6.5)
+shape = SubResource("RectangleShape2D_b560c")
+
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=660679339]
+sprite_frames = SubResource("SpriteFrames_b560c")
+animation = &"win"
+
+[node name="Signspin" type="AudioStreamPlayer" parent="." unique_id=581141499]
+stream = ExtResource("10_4epmr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

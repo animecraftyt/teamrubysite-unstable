@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://6lp0qwqwnr5t"]
+
+[ext_resource type="Script" uid="uid://b2l0myv6dpemp" path="res://areas/game_over.gd" id="1_8rv00"]
+[ext_resource type="Texture2D" uid="uid://8lhb8n3d77fe" path="res://sprites/char-select/bgchara.png" id="1_abcml"]
+[ext_resource type="FontFile" uid="uid://44cajpocabbe" path="res://fonts/ARCADE_N.TTF" id="3_2qxog"]
+[ext_resource type="AudioStream" uid="uid://c1vsak26ndd6v" path="res://music/game_over.wav" id="4_f0u1t"]
+
+[node name="game over" type="Node2D" unique_id=1803415746]
+script = ExtResource("1_8rv00")
+
+[node name="Bgchara" type="Sprite2D" parent="." unique_id=467154650]
+position = Vector2(672.99994, 325.5)
+scale = Vector2(6.844222, 3.315)
+texture = ExtResource("1_abcml")
+
+[node name="Label" type="Label" parent="." unique_id=1891952211]
+offset_left = 168.0
+offset_top = 279.0
+offset_right = 1108.0
+offset_bottom = 381.0
+theme_override_fonts/font = ExtResource("3_2qxog")
+theme_override_font_sizes/font_size = 101
+text = "game over"
+
+[node name="gameover" type="AudioStreamPlayer" parent="." unique_id=667780246]
+stream = ExtResource("4_f0u1t")
+
+[connection signal="ready" from="." to="." method="_on_audio_finished"]
+[connection signal="ready" from="Bgchara" to="." method="_on_audio_finished"]
